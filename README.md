@@ -4,15 +4,17 @@ Welcome to evaluation of CNN design choises performance on ImageNet-2012. Here y
 
 If you use results from this benchmark, please cite 
 
-    @ARTICLE{CaffenetBench2016,
-    author = {{Mishkin}, D. and {Sergievskiy}, N. and {Matas}, J.},
-    title = "{Systematic evaluation of CNN advances on the ImageNet}",
-    journal = {ArXiv e-prints},
-    archivePrefix = "arXiv",
-    eprint = {1606.02228},
-     year = 2016,
-    month = jun
+    @Article{CaffeNetBench2017,
+      Title                    = {Systematic evaluation of convolution neural network advances on the Imagenet },
+      Author                   = {Dmytro Mishkin and Nikolay Sergievskiy and Jiri Matas},
+      Journal                  = {Computer Vision and Image Understanding },
+      Year                     = {2017},
+      Doi                      = {https://doi.org/10.1016/j.cviu.2017.05.007},
+      ISSN                     = {1077-3142},
+      Keywords                 = {CNN},
+      Url                      = {http://www.sciencedirect.com/science/article/pii/S1077314217300814}
     }
+
 **upd2.: Some of the pretrained models are in [Releases](https://github.com/ducha-aiki/caffenet-benchmark/releases) section. They are licensed for unrestricted use.
 
 ***upd3.: Nice paper on noise sensitiveness: [Fine-grained Recognition in the Noisy Wild: Sensitivity Analysis of Convolutional Neural Networks Approaches](https://arxiv.org/pdf/1610.06756v1.pdf)
@@ -31,18 +33,19 @@ On-going evaluations with graphs:
 - [pooling](https://github.com/ducha-aiki/caffenet-benchmark/blob/master/Pooling.md)
 - [solvers](https://github.com/ducha-aiki/caffenet-benchmark/blob/master/Solvers.md)
 - [lr_policy](https://github.com/ducha-aiki/caffenet-benchmark/blob/master/Lr_policy.md)
-- [architectures] (https://github.com/ducha-aiki/caffenet-benchmark/blob/master/Architectures.md)
-- [First layer parameters] (https://github.com/ducha-aiki/caffenet-benchmark/blob/master/First_layer_input.md)
-- [classfier architectures] (https://github.com/ducha-aiki/caffenet-benchmark/blob/master/Clf_arch.md)
-- [augmentation] (https://github.com/ducha-aiki/caffenet-benchmark/blob/master/Augmentation.md)
-- [batchnorm] (https://github.com/ducha-aiki/caffenet-benchmark/blob/master/batchnorm.md)
-- [colorspace] (https://github.com/ducha-aiki/caffenet-benchmark/blob/master/Colorspace.md)
-- [regularization] (https://github.com/ducha-aiki/caffenet-benchmark/blob/master/Regularization.md)
-- [resnets, not yet successfull] (https://github.com/ducha-aiki/caffenet-benchmark/blob/master/ResNets.md)
-- [batch size] (https://github.com/ducha-aiki/caffenet-benchmark/blob/master/BatchSize.md)
-- [dataset size] (https://github.com/ducha-aiki/caffenet-benchmark/blob/master/Dataset_size.md)
-- [Network width] (https://github.com/ducha-aiki/caffenet-benchmark/blob/master/Complexity.md)
-- [other mix] (https://github.com/ducha-aiki/caffenet-benchmark/blob/master/Misc.md)
+- [architectures](https://github.com/ducha-aiki/caffenet-benchmark/blob/master/Architectures.md)
+- [First layer parameters](https://github.com/ducha-aiki/caffenet-benchmark/blob/master/First_layer_input.md)
+- [Conv1 depth](https://github.com/ducha-aiki/caffenet-benchmark/blob/master/Conv1_depth.md)
+- [classfier architectures](https://github.com/ducha-aiki/caffenet-benchmark/blob/master/Clf_arch.md)
+- [augmentation](https://github.com/ducha-aiki/caffenet-benchmark/blob/master/Augmentation.md)
+- [batchnorm](https://github.com/ducha-aiki/caffenet-benchmark/blob/master/batchnorm.md)
+- [colorspace](https://github.com/ducha-aiki/caffenet-benchmark/blob/master/Colorspace.md)
+- [regularization](https://github.com/ducha-aiki/caffenet-benchmark/blob/master/Regularization.md)
+- [resnets, not yet successfull](https://github.com/ducha-aiki/caffenet-benchmark/blob/master/ResNets.md)
+- [batch size](https://github.com/ducha-aiki/caffenet-benchmark/blob/master/BatchSize.md)
+- [dataset size](https://github.com/ducha-aiki/caffenet-benchmark/blob/master/Dataset_size.md)
+- [Network width](https://github.com/ducha-aiki/caffenet-benchmark/blob/master/Complexity.md)
+- [other mix](https://github.com/ducha-aiki/caffenet-benchmark/blob/master/Misc.md)
 
 
 ### Activations
@@ -53,6 +56,7 @@ On-going evaluations with graphs:
 | ReLU |0.471| 2.36 | No LRN, as in rest |
 | TanH |0.401| 2.78 |  |
 | [1.73TanH(2x/3)](http://yann.lecun.com/exdb/publis/pdf/lecun-98b.pdf) | 0.423 |  2.66 | As recommended in Efficient BackProp, LeCun98  |
+| ArcSinH | 0.417 | 2.71 | |
 | [VLReLU](https://web.stanford.edu/~awni/papers/relu_hybrid_icml2013_final.pdf) |0.469| 2.40|y=max(x,x/3)|
 | [RReLU](http://arxiv.org/abs/1505.00853) |0.478| 2.32| |
 | [Maxout](http://arxiv.org/abs/1302.4389) |0.482| 2.30| sqrt(2) narrower layers, 2 pieces. Same complexity, as for ReLU|
@@ -61,6 +65,9 @@ On-going evaluations with graphs:
 | [ELU](http://arxiv.org/abs/1511.07289) |0.488| 2.28| alpha=1, as in paper |
 | [ELU](http://arxiv.org/abs/1511.07289) |0.485| 2.29| alpha=0.5|
 | (ELU+LReLU) / 2 |0.486| 2.28| alpha=1, slope=0.05|
+| [SELU = Scaled ELU](https://arxiv.org/abs/1706.02515) | 0.470 | 2.38 | 1.05070 * ELU(x,alpha = 1.6732) |
+| [FReLU = ReLU + (learned) bias](https://arxiv.org/abs/1706.08098) | 0.488 | 2.27 | |
+| [FELU = ELU + (learned) bias] | 0.489 | 2.28 | |
 | Shifted [Softplus](http://machinelearning.wustl.edu/mlpapers/papers/AISTATS2011_GlorotBB11) |0.486| 2.29| Shifted BNLL aka softplus, y = log(1 + exp(x)) - log(2). Same as ELU, as expected |
 | No, with max pooling |0.389 | 2.93 | No non-linearity |
 | No, no max pooling |0.035 | 6.28 | No non-linearity, strided convolution |
@@ -339,7 +346,8 @@ ResNet attempts are moved to [ResNets.md](ResNets.md)
 | RGB->16->3 VlReLU | 0.483 | 2.30 | RGB -> conv1x1x16 vlrelu  ->  conv1x1x3 vlrelu|
 | RGB->3->3 VlReLU | 0.480 | 2.32 | RGB -> conv1x1x3 vlrelu  ->  conv1x1x3 vlrelu|
 | RGB->10->3 VlReLU->sum(RGB) | 0.482 | 2.30 | RGB -> conv1x1x10 vlrelu  ->  conv1x1x3 -> sum(RGB) ->vlrelu|
-| RGB and log(RGB)->10->3 VlReLU | 0.482 | 0.482 | RGB and log (RGB) -> conv1x1x10 vlrelu  ->  conv1x1x3 vlrelu|
+| RGB and log(RGB)->10->3 VlReLU | 0.482 | 2.29 | RGB and log (RGB) -> conv1x1x10 vlrelu  ->  conv1x1x3 vlrelu|
+| RGB and log(RGB) and log (256-RGB)->10->3 VlReLU | 0.484 | 2.29 | RGB and log (RGB) and log (256 - RGB) -> conv1x1x10 vlrelu  ->  conv1x1x3 vlrelu|
 | NN-Scale |0.467| 2.38 | Nearest neightbor instead of linear interpolation for rescale. Faster, but worse :(|
 | concat_rgb_each_pool |0.441| 2.51 | Concat avepoolRGB with each pool |
 | OpenCV RGB2Gray |0.413| 2.70 |RGB->Grayscale Gray = 0.299 R + 0.587 G + 0.114 B |
@@ -537,6 +545,23 @@ Or why input var=1 for LSUV is so important
 | 50% incorrect labels | 0.347| 3.44 | |
 
 [logs](https://github.com/ducha-aiki/caffenet-benchmark/tree/master/logs/contrib) 
+
+### Conv1 depth
+
+| Name    | Accuracy      | LogLoss | Comments  |
+| -------|---------:| ------:|:-----------|
+| Default, no 1x1 or 3x3 |  0.471 | 2.36 | conv1 -> pool1 |
+| + 1x1x96 NiN |  0.490 | 2.24 | conv1 -> 96C1 -> pool1 |
+| + 3x (1x1x96 NiN) |  0.509 | 2.10 | conv1 -> 3x(96C1) -> pool1 |
+| + 5x (1x1x96 NiN) |  0.514 | 2.11 | conv1 -> 5x(96C1) -> pool1 |
+| + 7x (1x1x96 NiN) |  0.514 | 2.11 | conv1 -> 7x(96C1) -> pool1 |
+| + 9x (1x1x96 NiN) |  0.516 | 2.10 | conv1 -> 9x(96C1) -> pool1 |
+| + 9x (1x1x96 NiN)R |  0.509 | 2.13 | conv1 -> Residual9x(96C1) -> pool1. 276k iters |
+| + 1x (3x3x96 NiN) |  0.500 | 2.19 | conv1 -> 1x(96C3) -> pool1 |
+| + 3x (3x3x96 NiN) |  0.538 | 1.99 | conv1 -> 1x(96C3) -> pool1 |
+| + 5x (3x3x96 NiN) |  **0.551** | **1.91** | conv1 -> 1x(96C3) -> pool1 |
+
+ [logs](https://github.com/ducha-aiki/caffenet-benchmark/tree/master/logs/conv1_depth)
 
 ### Other
 

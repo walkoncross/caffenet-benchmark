@@ -17,6 +17,7 @@ Because LRN layers add nothing to accuracy, they were removed for speed reasons 
 | ReLU |0.471| 2.36 | No LRN, as in rest |
 | TanH |0.401| 2.78 |  |
 | [1.73TanH(2x/3)](http://yann.lecun.com/exdb/publis/pdf/lecun-98b.pdf) | 0.423 |  2.66 | As recommended in Efficient BackProp, LeCun98  |
+| ArcSinH | 0.417 | 2.71 | |
 | [VLReLU](https://web.stanford.edu/~awni/papers/relu_hybrid_icml2013_final.pdf) |0.469| 2.40|y=max(x,x/3)|
 | [RReLU](http://arxiv.org/abs/1505.00853) |0.478| 2.32| |
 | [Maxout](http://arxiv.org/abs/1302.4389) |0.482| 2.30| sqrt(2) narrower layers, 2 pieces. Same complexity, as for ReLU|
@@ -26,6 +27,9 @@ Because LRN layers add nothing to accuracy, they were removed for speed reasons 
 | [ELU](http://arxiv.org/abs/1511.07289) |0.485| 2.29| alpha=0.5|
 | (ELU+LReLU) / 2 |0.486| 2.28| alpha=1, slope=0.05|
 | Shifted [Softplus](http://machinelearning.wustl.edu/mlpapers/papers/AISTATS2011_GlorotBB11) |0.486| 2.29| Shifted BNLL aka softplus, y = log(1 + exp(x)) - log(2). Same as ELU, as expected |
+| [SELU = Scaled ELU](https://arxiv.org/abs/1706.02515) | 0.470 | 2.38 | 1.05070 * ELU(x,alpha = 1.6732) |
+| [FReLU = ReLU + (learned) bias](https://arxiv.org/abs/1706.08098) | 0.488 | 2.27 | |
+| [FELU = ELU + (learned) bias] | 0.489 | 2.28 | |
 | No |0.389 | 2.93 | No non-linearity, with max-pooling |
 | No, no max pooling |0.035 | 6.28 | No non-linearity, strided convolution |
 | [APL](http://arxiv.org/abs/1412.6830)2 |0.471 | 2.38 | 2 linear pieces. Unlike other activations, [current author`s implementation](https://github.com/forestagostinelli/Learned-Activation-Functions-Source/issues/4) leads to different parameters for each x,y position of neuron |
